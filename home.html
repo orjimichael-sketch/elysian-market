@@ -473,9 +473,9 @@ footer{background:var(--foot);padding:3rem 2rem 1.8rem;border-top:1px solid var(
 <script>
 'use strict';
 /* ── CONFIG ─────────────────────────────────────── */
-const SUPABASE_URL      = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
-const configured = SUPABASE_URL !== 'YOUR_SUPABASE_URL';
+const SUPABASE_URL      = 'https://pjzvxeqkmraazzjpknmz.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBqenZ4ZXFrbXJhYXp6anBrbm16Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ1NzY0NTcsImV4cCI6MjEwMDE1MjQ1N30.-LlQzRtnBctfCR3BqgAU_hq4N1wAH9Yl9pbqE9TLP1w';
+const configured = SUPABASE_URL !== 'https://pjzvxeqkmraazzjpknmz.supabase.co';
 let sb = null;
 if (configured && window.supabase) sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 

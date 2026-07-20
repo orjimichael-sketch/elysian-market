@@ -385,11 +385,11 @@ body{font-family:'Raleway',sans-serif;min-height:100vh;display:flex;align-items:
    CONFIGURATION — Replace with your Supabase project values
    Dashboard → Settings → API → Project URL & anon key
    ══════════════════════════════════════════════════════════ */
-const SUPABASE_URL      = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL      = 'https://pjzvxeqkmraazzjpknmz.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBqenZ4ZXFrbXJhYXp6anBrbm16Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ1NzY0NTcsImV4cCI6MjEwMDE1MjQ1N30.-LlQzRtnBctfCR3BqgAU_hq4N1wAH9Yl9pbqE9TLP1w';
 
 /* ── INIT ──────────────────────────────────────────────── */
-const configured = SUPABASE_URL !== 'YOUR_SUPABASE_URL' && SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY';
+const configured = SUPABASE_URL !== 'https://pjzvxeqkmraazzjpknmz.supabase.co' && SUPABASE_ANON_KEY !== 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBqenZ4ZXFrbXJhYXp6anBrbm16Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ1NzY0NTcsImV4cCI6MjEwMDE1MjQ1N30.-LlQzRtnBctfCR3BqgAU_hq4N1wAH9Yl9pbqE9TLP1w';
 let sb = null;
 if (configured && window.supabase) {
   sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
