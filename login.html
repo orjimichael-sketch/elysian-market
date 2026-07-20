@@ -595,10 +595,18 @@ async function doGoogleAuth() {
     showToast('Add Supabase credentials to enable Google sign-in', 'info', 4000);
     return;
   }
-  await sb.auth.signInWithOAuth({
-    provider: 'google',
-    options: { redirectTo: window.location.href }
-  });
+  try {
+    var { error } = await sb.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: 'https://elsyian-market.netlify.app/login.html',
+        queryParams: { access_type: 'offline', prompt: 'consent' }
+      }
+    });
+    if (error) showToast(error.message, 'error');
+  } catch(e) {
+    showToast('Google sign-in failed. Please try again.', 'error');
+  }
 }
 
 /* ── SUCCESS STATE ─────────────────────────────────────── */
