@@ -95,6 +95,8 @@ body{font-family:'Raleway',sans-serif;min-height:100vh;display:flex;align-items:
 .theme-toggle svg{transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
 .theme-toggle:hover svg{transform:rotate(30deg)}
 
+/* ── GOOGLE BTN HIDDEN UNTIL OAUTH CONFIGURED ─────────── */
+.btn-alt, .divider { display: none !important; }
 /* ── TOAST ────────────────────────────────────────────── */
 .toast-wrap{position:fixed;top:1.2rem;left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;gap:.5rem;align-items:center;pointer-events:none}
 .toast{background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:10px;padding:.65rem 1.2rem;font-size:.82rem;color:var(--text-primary);white-space:nowrap;animation:toastIn .35s ease forwards;pointer-events:auto;display:flex;align-items:center;gap:.5rem}
