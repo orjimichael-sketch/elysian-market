@@ -53,24 +53,47 @@ button{font-family:'Raleway',sans-serif;cursor:pointer}
 .nav-search{position:relative;display:flex;align-items:center}
 .nav-search input{background:var(--input-bg);border:1px solid var(--input-b);border-radius:24px;padding:.38rem 2.4rem .38rem .95rem;color:var(--text1);font-family:'Raleway',sans-serif;font-size:.82rem;outline:none;width:190px;transition:all .25s}
 .nav-search input::placeholder{color:var(--text3)}
-.nav-search input:focus{width:230px;border-color:var(--accent);background:var(--input-bg)}
+.nav-search input:focus{width:250px;border-color:var(--accent);background:var(--input-bg)}
 .nav-search-icon{position:absolute;right:.7rem;color:var(--text3);pointer-events:none;display:flex}
+/* Search dropdown */
+.search-dropdown{position:absolute;top:calc(100% + 8px);left:0;right:0;background:var(--glass);border:1px solid var(--glass-b);border-radius:14px;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);overflow:hidden;display:none;z-index:900;box-shadow:0 12px 40px rgba(0,0,0,.45);min-width:300px}
+.search-dropdown.open{display:block;animation:fadeDown .2s ease}
+.search-dd-head{padding:.6rem 1rem;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);border-bottom:1px solid var(--divider)}
+.search-dd-item{display:flex;align-items:center;gap:.75rem;padding:.65rem 1rem;cursor:pointer;transition:background .18s;border:none;background:none;width:100%;text-align:left}
+.search-dd-item:hover{background:rgba(76,175,125,.08)}
+.search-dd-thumb{width:40px;height:40px;border-radius:8px;overflow:hidden;flex-shrink:0;background:#0a1e10;display:flex;align-items:center;justify-content:center}
+.search-dd-thumb img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.search-dd-info{flex:1;min-width:0;text-align:left}
+.search-dd-name{font-size:.84rem;font-weight:600;color:var(--text1);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.search-dd-cat{font-size:.7rem;color:var(--text3);display:block}
+.search-dd-price{font-size:.84rem;font-weight:700;color:var(--accent);flex-shrink:0}
+.search-dd-empty{padding:1.2rem 1rem;font-size:.82rem;color:var(--text3);text-align:center}
+.search-dd-all{display:flex;align-items:center;justify-content:center;gap:.4rem;padding:.7rem 1rem;font-size:.78rem;font-weight:600;color:var(--accent);border-top:1px solid var(--divider);cursor:pointer;transition:background .18s;background:none;border-left:none;border-right:none;border-bottom:none;width:100%}
+.search-dd-all:hover{background:rgba(76,175,125,.07)}
 .nav-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--glass-b);background:var(--glass);display:flex;align-items:center;justify-content:center;color:var(--text2);transition:all .22s;position:relative;flex-shrink:0}
 .nav-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(76,175,125,.08)}
 .cart-badge{position:absolute;top:-5px;right:-5px;width:18px;height:18px;background:var(--gold);color:#1a0a00;font-size:.62rem;font-weight:700;border-radius:50%;display:none;align-items:center;justify-content:center}
 .cart-badge.show{display:flex}
 .user-wrap{position:relative}
-.user-btn{display:flex;align-items:center;gap:.5rem;padding:.3rem .65rem .3rem .3rem;border:1px solid var(--glass-b);border-radius:24px;background:var(--glass);color:var(--text1);transition:all .22s;white-space:nowrap}
+.user-btn{display:flex;align-items:center;gap:.5rem;padding:.28rem .28rem;border:1px solid var(--glass-b);border-radius:50%;background:var(--glass);color:var(--text1);transition:all .22s}
 .user-btn:hover{border-color:var(--accent);background:rgba(76,175,125,.08)}
-.avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--gold));display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:#051a0a;flex-shrink:0}
-.user-name-nav{font-size:.8rem;font-weight:500;max-width:90px;overflow:hidden;text-overflow:ellipsis}
-.user-dropdown{position:absolute;top:calc(100% + 8px);right:0;background:var(--glass);border:1px solid var(--glass-b);border-radius:12px;min-width:170px;backdrop-filter:blur(20px);overflow:hidden;display:none;z-index:600;box-shadow:0 8px 32px rgba(0,0,0,.4)}
-.user-dropdown.open{display:block;animation:fadeDown .2s ease}
-.dd-item{display:flex;align-items:center;gap:.6rem;padding:.65rem 1rem;font-size:.82rem;color:var(--text2);transition:all .18s;border:none;background:none;width:100%;text-align:left}
-.dd-item:hover{background:rgba(76,175,125,.1);color:var(--text1)}
-.dd-sep{height:1px;background:var(--divider);margin:.25rem 0}
+.avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--gold));display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:#051a0a;flex-shrink:0}
+.user-name-nav{display:none}
+.user-dropdown{position:absolute;top:calc(100% + 10px);right:0;background:var(--glass);border:1px solid var(--glass-b);border-radius:16px;min-width:220px;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);overflow:hidden;display:none;z-index:700;box-shadow:0 12px 40px rgba(0,0,0,.45)}
+.user-dropdown.open{display:block;animation:fadeDown .22s ease}
+.dd-profile{padding:1rem 1rem .8rem;border-bottom:1px solid var(--divider);display:flex;align-items:center;gap:.75rem}
+.dd-profile-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--gold));display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;color:#051a0a;flex-shrink:0}
+.dd-profile-info strong{display:block;font-size:.86rem;font-weight:600;color:var(--text1)}
+.dd-profile-info span{font-size:.72rem;color:var(--text3)}
+.dd-item{display:flex;align-items:center;gap:.7rem;padding:.62rem 1rem;font-size:.82rem;color:var(--text2);transition:all .18s;border:none;background:none;width:100%;text-align:left;cursor:pointer}
+.dd-item:hover{background:rgba(76,175,125,.08);color:var(--text1)}
+.dd-item svg{flex-shrink:0;opacity:.7}
+.dd-item:hover svg{opacity:1}
+.dd-item-badge{margin-left:auto;background:var(--accent);color:#051a0a;font-size:.62rem;font-weight:700;padding:.15rem .45rem;border-radius:20px}
+.dd-sep{height:1px;background:var(--divider);margin:.3rem 0}
 .dd-danger{color:var(--err) !important}
 .dd-danger:hover{background:rgba(248,113,113,.08) !important}
+.dd-danger svg{opacity:.7}
 
 /* ── HERO ─────────────────────────────────────────── */
 .hero{height:100vh;min-height:600px;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#050e09}
@@ -207,11 +230,16 @@ footer{background:var(--foot);padding:3rem 2rem 1.8rem;border-top:1px solid var(
 .qty-num{font-size:.82rem;font-weight:600;color:var(--text1);min-width:18px;text-align:center}
 .ci-remove{width:28px;height:28px;border-radius:50%;border:none;background:none;color:var(--text3);display:flex;align-items:center;justify-content:center;transition:all .18s;flex-shrink:0}
 .ci-remove:hover{color:var(--err)}
-.cart-foot{padding:1.2rem 1.5rem;border-top:1px solid var(--divider);flex-shrink:0}
-.cart-subtotal{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
-.cart-subtotal span:first-child{font-size:.82rem;color:var(--text2)}
-.cart-subtotal span:last-child{font-size:.92rem;font-weight:700;color:var(--text1)}
-.cart-note{font-size:.72rem;color:var(--text3);margin-bottom:1rem;text-align:center}
+.cart-foot{padding:1.1rem 1.5rem;border-top:1px solid var(--divider);flex-shrink:0}
+.cart-breakdown{margin-bottom:.9rem}
+.cart-row{display:flex;justify-content:space-between;align-items:center;padding:.28rem 0}
+.cart-row span:first-child{font-size:.8rem;color:var(--text2)}
+.cart-row span:last-child{font-size:.82rem;font-weight:600;color:var(--text1)}
+.cart-row.delivery span:last-child{color:var(--accent)}
+.cart-row.total{border-top:1px solid var(--divider);margin-top:.4rem;padding-top:.55rem}
+.cart-row.total span:first-child{font-size:.9rem;font-weight:700;color:var(--text1)}
+.cart-row.total span:last-child{font-size:1.05rem;font-weight:700;color:var(--text1)}
+.cart-note{font-size:.7rem;color:var(--text3);margin-bottom:.9rem;text-align:center;line-height:1.5}
 .btn-checkout{width:100%;padding:.82rem;background:linear-gradient(135deg,var(--accent),#0f6635);border:1px solid rgba(76,175,125,.4);border-radius:10px;color:#d4f5e2;font-size:.88rem;font-weight:700;letter-spacing:.1em;transition:all .25s}
 .btn-checkout:hover{box-shadow:0 6px 24px rgba(13,74,42,.5);transform:translateY(-1px)}
 
@@ -271,9 +299,14 @@ footer{background:var(--foot);padding:3rem 2rem 1.8rem;border-top:1px solid var(
     <button class="nav-link" onclick="scrollTo('#newsletter')" role="listitem">Community</button>
   </div>
   <div class="nav-spacer"></div>
-  <div class="nav-search">
-    <input type="search" id="searchInput" placeholder="Search anime art..." aria-label="Search products" autocomplete="off"/>
+  <div class="nav-search" id="navSearch">
+    <input type="search" id="searchInput" placeholder="Search products..." aria-label="Search products" autocomplete="off" aria-expanded="false" aria-haspopup="listbox"/>
     <span class="nav-search-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+    <div class="search-dropdown" id="searchDropdown" role="listbox">
+      <div class="search-dd-head" id="searchDDHead">All Products</div>
+      <div id="searchDDList"></div>
+      <button class="search-dd-all" id="searchDDAll">View all results <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+    </div>
   </div>
   <button class="nav-btn" id="themeToggle" aria-label="Toggle theme">
     <svg id="themeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
@@ -283,14 +316,21 @@ footer{background:var(--foot);padding:3rem 2rem 1.8rem;border-top:1px solid var(
     <span class="cart-badge" id="cartBadge" aria-label="cart items">0</span>
   </button>
   <div class="user-wrap">
-    <button class="user-btn" id="userMenuBtn" aria-expanded="false" aria-haspopup="true">
+    <button class="user-btn" id="userMenuBtn" aria-expanded="false" aria-haspopup="true" aria-label="User menu">
       <div class="avatar" id="userAvatar" aria-hidden="true">E</div>
-      <span class="user-name-nav" id="userNameNav">Explorer</span>
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
     </button>
     <div class="user-dropdown" id="userDropdown" role="menu">
-      <button class="dd-item" role="menuitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>My Orders</button>
+      <div class="dd-profile">
+        <div class="dd-profile-avatar" id="ddAvatar">E</div>
+        <div class="dd-profile-info">
+          <strong id="ddName">Explorer</strong>
+          <span id="ddEmail">Loading...</span>
+        </div>
+      </div>
+      <button class="dd-item" role="menuitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/></svg>My Orders<span class="dd-item-badge">0</span></button>
       <button class="dd-item" role="menuitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Wishlist</button>
+      <button class="dd-item" role="menuitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Track Order</button>
+      <button class="dd-item" role="menuitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg>Edit Profile</button>
       <button class="dd-item" role="menuitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 0 0 12 2a10 10 0 0 0-7.07 2.93"/><path d="M4.93 19.07A10 10 0 0 0 12 22a10 10 0 0 0 7.07-2.93"/></svg>Settings</button>
       <div class="dd-sep"></div>
       <button class="dd-item dd-danger" id="signOutBtn" role="menuitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</button>
@@ -460,8 +500,13 @@ footer{background:var(--foot);padding:3rem 2rem 1.8rem;border-top:1px solid var(
     <div id="cartItems"></div>
   </div>
   <div class="cart-foot" id="cartFoot" style="display:none">
-    <div class="cart-subtotal"><span>Subtotal</span><span id="cartTotal">$0.00</span></div>
-    <p class="cart-note">Shipping & taxes calculated at checkout</p>
+    <div class="cart-breakdown">
+      <div class="cart-row"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div>
+      <div class="cart-row delivery"><span>Delivery fee</span><span id="cartDelivery">$4.99</span></div>
+      <div class="cart-row"><span>Tax (7.5%)</span><span id="cartTax">$0.00</span></div>
+      <div class="cart-row total"><span>Total</span><span id="cartTotal">$0.00</span></div>
+    </div>
+    <p class="cart-note">Free delivery on orders over $60 · Estimated 3–7 business days</p>
     <button class="btn-checkout">Proceed to Checkout</button>
   </div>
 </aside>
@@ -531,8 +576,10 @@ var currentUser = null;
 function updateUserUI(user) {
   var name = (user.user_metadata && user.user_metadata.full_name) ? user.user_metadata.full_name : user.email.split('@')[0];
   var first = name.charAt(0).toUpperCase();
-  document.getElementById('userNameNav').textContent = name.split(' ')[0];
   document.getElementById('userAvatar').textContent = first;
+  document.getElementById('ddAvatar').textContent = first;
+  document.getElementById('ddName').textContent = name;
+  document.getElementById('ddEmail').textContent = user.email || '';
 }
 
 /* ── SIGN OUT ───────────────────────────────────── */
@@ -669,14 +716,82 @@ renderGrid('merchGrid','merch','featured','');
 
 /* ── SEARCH ─────────────────────────────────────── */
 var searchTimeout;
-document.getElementById('searchInput').addEventListener('input', function() {
+var searchInput = document.getElementById('searchInput');
+var searchDD = document.getElementById('searchDropdown');
+var searchDDList = document.getElementById('searchDDList');
+var searchDDHead = document.getElementById('searchDDHead');
+
+function renderSearchDD(query) {
+  var q = (query||'').toLowerCase().trim();
+  var results = q
+    ? PRODUCTS.filter(function(p){ return p.name.toLowerCase().indexOf(q)!==-1 || (p.desc&&p.desc.toLowerCase().indexOf(q)!==-1) || p.type.indexOf(q)!==-1; })
+    : PRODUCTS.slice(0,8);
+  searchDDHead.textContent = q ? 'Results for "'+query+'"' : 'All Products';
+  if(results.length === 0) {
+    searchDDList.innerHTML = '<div class="search-dd-empty">No products found for "'+query+'"</div>';
+  } else {
+    searchDDList.innerHTML = results.map(function(p){
+      var thumb = p.img
+        ? '<img src="data:image/jpeg;base64,'+IMG_MAP[p.img]+'" alt="'+p.name+'"/>'
+        : '<div style="width:100%;height:100%;background:'+p.grad+';border-radius:6px"></div>';
+      return '<button class="search-dd-item" data-id="'+p.id+'" role="option">'
+        +'<div class="search-dd-thumb">'+thumb+'</div>'
+        +'<div class="search-dd-info">'
+        +'<span class="search-dd-name">'+p.name+'</span>'
+        +'<span class="search-dd-cat">'+p.type+(p.res?' · '+p.res:'')+'</span>'
+        +'</div>'
+        +'<span class="search-dd-price">$'+p.price.toFixed(2)+'</span>'
+        +'</button>';
+    }).join('');
+  }
+}
+
+function openSearchDD() {
+  renderSearchDD(searchInput.value);
+  searchDD.classList.add('open');
+  searchInput.setAttribute('aria-expanded','true');
+}
+function closeSearchDD() {
+  searchDD.classList.remove('open');
+  searchInput.setAttribute('aria-expanded','false');
+}
+
+searchInput.addEventListener('focus', function(){ openSearchDD(); });
+searchInput.addEventListener('input', function() {
   clearTimeout(searchTimeout);
   var val = this.value;
+  openSearchDD();
   searchTimeout = setTimeout(function() {
     searchTerm = val;
     renderGrid('wallGrid','wallpaper',document.getElementById('wallSort').value, searchTerm);
     renderGrid('merchGrid','merch',document.getElementById('merchSort').value, searchTerm);
   }, 280);
+});
+
+searchDDList.addEventListener('click', function(e) {
+  var btn = e.target.closest('.search-dd-item');
+  if(!btn) return;
+  var id = parseInt(btn.dataset.id);
+  var p = PRODUCTS.find(function(x){return x.id===id;});
+  if(!p) return;
+  closeSearchDD();
+  searchInput.value = p.name;
+  searchTerm = p.name;
+  renderGrid('wallGrid','wallpaper',document.getElementById('wallSort').value, searchTerm);
+  renderGrid('merchGrid','merch',document.getElementById('merchSort').value, searchTerm);
+  var section = document.getElementById(p.type==='wallpaper'?'wallpapers':'merch');
+  if(section) section.scrollIntoView({behavior:'smooth'});
+});
+
+document.getElementById('searchDDAll').addEventListener('click', function(){
+  closeSearchDD();
+  searchTerm = searchInput.value;
+  renderGrid('wallGrid','wallpaper',document.getElementById('wallSort').value, searchTerm);
+  renderGrid('merchGrid','merch',document.getElementById('merchSort').value, searchTerm);
+});
+
+document.addEventListener('click', function(e){
+  if(!document.getElementById('navSearch').contains(e.target)) closeSearchDD();
 });
 
 document.getElementById('wallSort').addEventListener('change', function() { renderGrid('wallGrid','wallpaper',this.value,searchTerm); });
@@ -714,7 +829,7 @@ function renderCart() {
       +'<div class="cart-item-info">'
       +'<p class="ci-name">'+p.name+'</p>'
       +'<p class="ci-cat">'+p.type+'</p>'
-      +'<p class="ci-price">$'+p.price.toFixed(2)+'</p>'
+      +'<p class="ci-price">$'+(p.price*item.qty).toFixed(2)+(item.qty>1?' <small style="font-weight:400;font-size:.7rem;opacity:.6">($'+p.price.toFixed(2)+' each)</small>':'')+'</p>'
       +'<div class="ci-qty">'
       +'<button class="qty-btn" data-action="dec" data-id="'+p.id+'" aria-label="Decrease quantity">-</button>'
       +'<span class="qty-num">'+item.qty+'</span>'
@@ -723,7 +838,13 @@ function renderCart() {
       +'<button class="ci-remove" data-id="'+p.id+'" aria-label="Remove '+p.name+' from cart"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>'
       +'</div>';
   }).join('');
-  var total = cart.reduce(function(a,item){var p=PRODUCTS.find(function(x){return x.id===item.id;}); return a+(p?p.price*item.qty:0);},0);
+  var subtotal = cart.reduce(function(a,item){var p=PRODUCTS.find(function(x){return x.id===item.id;}); return a+(p?p.price*item.qty:0);},0);
+  var delivery = subtotal >= 60 ? 0 : 4.99;
+  var tax = subtotal * 0.075;
+  var total = subtotal + delivery + tax;
+  document.getElementById('cartSubtotal').textContent='$'+subtotal.toFixed(2);
+  document.getElementById('cartDelivery').textContent = delivery === 0 ? 'FREE' : '$'+delivery.toFixed(2);
+  document.getElementById('cartTax').textContent='$'+tax.toFixed(2);
   document.getElementById('cartTotal').textContent='$'+total.toFixed(2);
   updateCartBadge();
 }
