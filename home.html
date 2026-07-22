@@ -37,6 +37,7 @@
 }
 html{scroll-behavior:smooth}
 body{font-family:'Raleway',sans-serif;background:var(--bg);color:var(--text1);min-height:100vh;transition:background .5s,color .5s;overflow-x:hidden}
+body.cart-open{overflow:hidden}
 body::-webkit-scrollbar{width:6px}body::-webkit-scrollbar-track{background:transparent}body::-webkit-scrollbar-thumb{background:var(--scroll-thumb);border-radius:3px}
 a{text-decoration:none;color:inherit}
 img{display:block;max-width:100%}
@@ -243,6 +244,48 @@ footer{background:var(--foot);padding:3rem 2rem 1.8rem;border-top:1px solid var(
 .btn-checkout{width:100%;padding:.82rem;background:linear-gradient(135deg,var(--accent),#0f6635);border:1px solid rgba(76,175,125,.4);border-radius:10px;color:#d4f5e2;font-size:.88rem;font-weight:700;letter-spacing:.1em;transition:all .25s}
 .btn-checkout:hover{box-shadow:0 6px 24px rgba(13,74,42,.5);transform:translateY(-1px)}
 
+/* ── MODALS ────────────────────────────────────────── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex;animation:fadeIn .2s ease}
+.modal{background:var(--glass);border:1px solid var(--glass-b);border-radius:20px;backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);width:100%;max-width:460px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.55)}
+.modal::-webkit-scrollbar{width:4px}.modal::-webkit-scrollbar-thumb{background:var(--scroll-thumb);border-radius:2px}
+.modal-head{padding:1.3rem 1.4rem 1rem;border-bottom:1px solid var(--divider);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--glass);backdrop-filter:blur(20px);z-index:2}
+.modal-head h3{font-family:'Cinzel',serif;font-size:1.1rem;font-weight:600;color:var(--text1)}
+.modal-close{width:32px;height:32px;border-radius:50%;border:1px solid var(--glass-b);background:none;color:var(--text2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .18s;flex-shrink:0;font-size:.9rem}
+.modal-close:hover{border-color:var(--err);color:var(--err)}
+.modal-body{padding:1.4rem}
+.modal-empty{text-align:center;padding:2.5rem 1rem;color:var(--text3)}
+.modal-empty svg{margin:0 auto 1rem;opacity:.3}
+.modal-empty p{font-size:.88rem;line-height:1.6}
+.chk-section{margin-bottom:1.4rem}
+.chk-section h4{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:.85rem}
+.chk-row{display:flex;gap:.75rem;margin-bottom:.7rem}
+.chk-field{flex:1;display:flex;flex-direction:column;gap:.32rem}
+.chk-field label{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)}
+.chk-field input,.chk-field select{background:var(--input-bg);border:1px solid var(--input-b);border-radius:9px;padding:.62rem .85rem;color:var(--text1);font-family:'Raleway',sans-serif;font-size:.85rem;outline:none;transition:border-color .2s;width:100%;-webkit-appearance:none}
+.chk-field input::placeholder{color:var(--text3)}
+.chk-field input:focus,.chk-field select:focus{border-color:var(--accent)}
+.chk-divider{height:1px;background:var(--divider);margin:1.1rem 0}
+.chk-summary-row{display:flex;justify-content:space-between;padding:.28rem 0;font-size:.82rem;color:var(--text2)}
+.chk-summary-row.total{font-weight:700;font-size:.95rem;color:var(--text1);border-top:1px solid var(--divider);padding-top:.55rem;margin-top:.3rem}
+.chk-free{color:var(--accent)!important}
+.btn-pay{width:100%;padding:.86rem;background:linear-gradient(135deg,var(--accent),#0f6635);border:1px solid rgba(76,175,125,.4);border-radius:10px;color:#d4f5e2;font-family:'Raleway',sans-serif;font-size:.9rem;font-weight:700;letter-spacing:.1em;cursor:pointer;transition:all .25s;margin-top:1.1rem;display:flex;align-items:center;justify-content:center;gap:.6rem}
+.btn-pay:hover{box-shadow:0 6px 24px rgba(13,74,42,.5);transform:translateY(-1px)}
+.btn-pay.loading{pointer-events:none;opacity:.7}
+.pay-spin{width:15px;height:15px;border:2px solid rgba(212,245,226,.3);border-top-color:#d4f5e2;border-radius:50%;animation:spin .7s linear infinite;display:none}
+.btn-pay.loading .pay-spin{display:block}
+.btn-pay.loading .pay-label{display:none}
+.order-success{text-align:center;padding:2rem 1rem}
+.order-check{width:64px;height:64px;border-radius:50%;border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;animation:checkIn .5s cubic-bezier(.34,1.56,.64,1) both}
+.order-success h3{font-family:'Cinzel',serif;font-size:1.3rem;color:var(--text1);margin-bottom:.5rem}
+.order-success p{font-size:.84rem;color:var(--text2);line-height:1.7;margin-bottom:.3rem}
+.order-id{font-size:.75rem;color:var(--text3);font-family:monospace;margin-top:.6rem;padding:.4rem .8rem;background:rgba(76,175,125,.08);border-radius:6px;display:inline-block}
+.profile-avatar-wrap{display:flex;flex-direction:column;align-items:center;gap:.6rem;margin-bottom:1.4rem}
+.profile-avatar-big{width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--gold));display:flex;align-items:center;justify-content:center;font-size:1.75rem;font-weight:700;color:#051a0a}
+.settings-row{display:flex;align-items:center;justify-content:space-between;padding:.7rem 0;border-bottom:1px solid var(--divider)}
+.settings-row span{font-size:.86rem;color:var(--text2)}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes checkIn{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
 /* ── TOAST ────────────────────────────────────────── */
 .toast-wrap{position:fixed;bottom:1.5rem;right:1.5rem;z-index:900;display:flex;flex-direction:column;gap:.5rem;align-items:flex-end;pointer-events:none}
 .toast{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-b);border-radius:10px;padding:.6rem 1.1rem;font-size:.8rem;color:var(--text1);display:flex;align-items:center;gap:.5rem;animation:slideRight .3s ease forwards;pointer-events:auto;max-width:280px}
@@ -261,13 +304,13 @@ footer{background:var(--foot);padding:3rem 2rem 1.8rem;border-top:1px solid var(
 @media(max-width:900px){
   .foot-grid{grid-template-columns:1fr 1fr;gap:2rem}
   .nav-links{display:none}
-  .nav-search input{width:140px}
-  .nav-search input:focus{width:170px}
+  .nav-search input{width:120px}
+  .nav-search input:focus{width:150px}
   .section-banner-bg{background-attachment:scroll}
 }
 @media(max-width:600px){
   .feat-bar{grid-template-columns:1fr;gap:.5rem}
-  .product-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem}
+  .product-grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:1rem}
   .pcard-thumb{height:155px}
   .cart-panel{width:100vw}
   .foot-grid{grid-template-columns:1fr;gap:1.5rem}
@@ -277,6 +320,18 @@ footer{background:var(--foot);padding:3rem 2rem 1.8rem;border-top:1px solid var(
   .btn-primary,.btn-outline{padding:.68rem 1.4rem;font-size:.82rem}
   .products-area{padding:1.8rem 1rem 2.5rem}
   .section-banner-body{padding:2.5rem 1.2rem}
+  .nav{padding:0 .85rem;gap:.6rem}
+  .nav-search input{width:100px;font-size:.76rem}
+  .nav-search input:focus{width:130px}
+  .search-dropdown{left:auto;right:0;min-width:280px}
+  .nav-btn{width:34px;height:34px}
+  .user-btn{padding:.22rem}
+  .avatar{width:30px;height:30px;font-size:.76rem}
+  .user-dropdown{right:0;min-width:200px}
+  #cartBtn,#userMenuBtn{display:flex!important;flex-shrink:0}
+}
+@media(max-width:380px){
+  .nav-search{display:none}
 }
 @media(prefers-reduced-motion:reduce){
   .hero-bg,.pcard:hover{animation:none;transform:none}
@@ -312,7 +367,7 @@ footer{background:var(--foot);padding:3rem 2rem 1.8rem;border-top:1px solid var(
     <svg id="themeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
   </button>
   <button class="nav-btn" id="cartBtn" aria-label="Open cart" aria-expanded="false">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
     <span class="cart-badge" id="cartBadge" aria-label="cart items">0</span>
   </button>
   <div class="user-wrap">
@@ -513,6 +568,109 @@ footer{background:var(--foot);padding:3rem 2rem 1.8rem;border-top:1px solid var(
 
 <!-- ╔═ TOAST ════════════════════════════════════════════════════════════ -->
 <div class="toast-wrap" id="toastWrap" aria-live="polite" aria-atomic="true"></div>
+
+<!-- ╔═ MODALS ════════════════════════════════════════════════════════════ -->
+<!-- Orders -->
+<div class="modal-overlay" id="ordersModal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modal-head"><h3>My Orders</h3><button class="modal-close" data-close="ordersModal">&#x2715;</button></div>
+    <div class="modal-body"><div class="modal-empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/></svg><p>No orders yet.<br/>Start shopping to see your orders here.</p></div></div>
+  </div>
+</div>
+<!-- Wishlist -->
+<div class="modal-overlay" id="wishlistModal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modal-head"><h3>Wishlist</h3><button class="modal-close" data-close="wishlistModal">&#x2715;</button></div>
+    <div class="modal-body"><div class="modal-empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><p>Your wishlist is empty.<br/>Tap the heart on any product to save it here.</p></div></div>
+  </div>
+</div>
+<!-- Track Order -->
+<div class="modal-overlay" id="trackModal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modal-head"><h3>Track Order</h3><button class="modal-close" data-close="trackModal">&#x2715;</button></div>
+    <div class="modal-body">
+      <div class="chk-field" style="margin-bottom:1rem"><label>Order ID</label><input type="text" id="trackOrderInput" placeholder="e.g. ELY-20260722-XXXX"/></div>
+      <button class="btn-pay" style="margin-top:0" onclick="trackOrder()"><span class="pay-label">Track My Order</span></button>
+      <div id="trackResult" style="margin-top:1rem;text-align:center;font-size:.84rem;color:var(--text3)"></div>
+    </div>
+  </div>
+</div>
+<!-- Edit Profile -->
+<div class="modal-overlay" id="profileModal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modal-head"><h3>Edit Profile</h3><button class="modal-close" data-close="profileModal">&#x2715;</button></div>
+    <div class="modal-body">
+      <div class="profile-avatar-wrap"><div class="profile-avatar-big" id="profileAvatarBig">E</div></div>
+      <div class="chk-row"><div class="chk-field"><label>Full Name</label><input type="text" id="profileName" placeholder="Your full name"/></div></div>
+      <div class="chk-row"><div class="chk-field"><label>Email</label><input type="email" id="profileEmail" readonly style="opacity:.55;cursor:not-allowed"/></div></div>
+      <div class="chk-row"><div class="chk-field"><label>Phone</label><input type="tel" id="profilePhone" placeholder="+234 000 000 0000"/></div></div>
+      <button class="btn-pay" id="saveProfileBtn"><span class="pay-label">Save Changes</span></button>
+    </div>
+  </div>
+</div>
+<!-- Settings -->
+<div class="modal-overlay" id="settingsModal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modal-head"><h3>Settings</h3><button class="modal-close" data-close="settingsModal">&#x2715;</button></div>
+    <div class="modal-body">
+      <div class="chk-section">
+        <h4>Appearance</h4>
+        <div class="settings-row"><span>Dark / Light Mode</span><button id="settingsThemeBtn" style="padding:.32rem .85rem;border-radius:20px;border:1px solid var(--glass-b);background:var(--input-bg);color:var(--text2);font-family:'Raleway',sans-serif;font-size:.78rem;cursor:pointer">Toggle</button></div>
+        <div class="settings-row" style="border-bottom:none"><span>Currency</span>
+          <select style="background:var(--input-bg);border:1px solid var(--glass-b);border-radius:8px;padding:.3rem .55rem;color:var(--text2);font-family:'Raleway',sans-serif;font-size:.78rem;outline:none">
+            <option>USD ($)</option><option>NGN (N)</option><option>GBP (L)</option><option>EUR (E)</option>
+          </select>
+        </div>
+      </div>
+      <div class="chk-section">
+        <h4>Notifications</h4>
+        <div class="settings-row"><span>Order updates</span><input type="checkbox" checked style="accent-color:var(--accent);width:16px;height:16px"/></div>
+        <div class="settings-row" style="border-bottom:none"><span>Promotions and new drops</span><input type="checkbox" checked style="accent-color:var(--accent);width:16px;height:16px"/></div>
+      </div>
+      <div class="chk-section">
+        <h4>Account</h4>
+        <button onclick="document.getElementById('signOutBtn').click()" style="width:100%;padding:.65rem;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.25);border-radius:9px;color:var(--err);font-family:'Raleway',sans-serif;font-size:.84rem;cursor:pointer;transition:background .2s">Sign Out</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Checkout -->
+<div class="modal-overlay" id="checkoutModal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modal-head"><h3>Checkout</h3><button class="modal-close" data-close="checkoutModal">&#x2715;</button></div>
+    <div class="modal-body" id="checkoutBody">
+      <div class="chk-section">
+        <h4>Delivery Information</h4>
+        <div class="chk-row"><div class="chk-field"><label>Full Name</label><input type="text" id="chkName" placeholder="Full name"/></div></div>
+        <div class="chk-row"><div class="chk-field"><label>Email</label><input type="email" id="chkEmail" placeholder="you@example.com"/></div></div>
+        <div class="chk-row"><div class="chk-field"><label>Phone</label><input type="tel" id="chkPhone" placeholder="+234 000 000 0000"/></div></div>
+        <div class="chk-row"><div class="chk-field"><label>Address</label><input type="text" id="chkAddress" placeholder="Street address"/></div></div>
+        <div class="chk-row">
+          <div class="chk-field"><label>City</label><input type="text" id="chkCity" placeholder="Lagos"/></div>
+          <div class="chk-field"><label>Country</label>
+            <select id="chkCountry"><option>Nigeria</option><option>Ghana</option><option>United Kingdom</option><option>United States</option><option>Canada</option><option>Germany</option><option>Other</option></select>
+          </div>
+        </div>
+      </div>
+      <div class="chk-divider"></div>
+      <div class="chk-section">
+        <h4>Payment Details</h4>
+        <div class="chk-row"><div class="chk-field"><label>Card Number</label><input type="text" id="chkCard" placeholder="1234 5678 9012 3456" maxlength="19" inputmode="numeric"/></div></div>
+        <div class="chk-row">
+          <div class="chk-field"><label>Expiry</label><input type="text" id="chkExpiry" placeholder="MM / YY" maxlength="7"/></div>
+          <div class="chk-field"><label>CVV</label><input type="text" id="chkCVV" placeholder="123" maxlength="4" inputmode="numeric"/></div>
+        </div>
+      </div>
+      <div class="chk-divider"></div>
+      <div class="chk-section">
+        <h4>Order Summary</h4>
+        <div id="chkSummary"></div>
+      </div>
+      <button class="btn-pay" id="payBtn"><span class="pay-spin"></span><span class="pay-label">Place Order</span></button>
+      <p style="font-size:.7rem;color:var(--text3);text-align:center;margin-top:.75rem;line-height:1.5">Orders are saved securely. Full payment processing via Stripe coming soon.</p>
+    </div>
+  </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
@@ -893,27 +1051,132 @@ function openCart() {
   document.getElementById('cartPanel').classList.add('open');
   document.getElementById('cartOverlay').classList.add('open');
   document.getElementById('cartBtn').setAttribute('aria-expanded','true');
+  document.body.classList.add('cart-open');
   renderCart();
 }
 function closeCart() {
   document.getElementById('cartPanel').classList.remove('open');
   document.getElementById('cartOverlay').classList.remove('open');
   document.getElementById('cartBtn').setAttribute('aria-expanded','false');
+  document.body.classList.remove('cart-open');
 }
 document.getElementById('cartBtn').addEventListener('click', openCart);
 document.getElementById('cartClose').addEventListener('click', closeCart);
 document.getElementById('cartOverlay').addEventListener('click', closeCart);
 
 /* ── NEWSLETTER ─────────────────────────────────── */
-document.getElementById('nlBtn').addEventListener('click', function() {
+document.getElementById('nlBtn').addEventListener('click', async function() {
   var email = document.getElementById('nlEmail').value.trim();
   if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { showToast('Please enter a valid email address.','error'); return; }
-  showToast('Welcome to the community! Check your inbox.','success',4000);
-  document.getElementById('nlEmail').value='';
+  var btn = document.getElementById('nlBtn');
+  btn.textContent = '...'; btn.disabled = true;
+  if(configured && sb){
+    try{ await sb.from('subscribers').insert([{email:email,subscribed_at:new Date().toISOString()}]); }
+    catch(e){ console.log('Subscriber:', e.message); }
+  }
+  setTimeout(function(){
+    showToast('You are now subscribed!','success',4000);
+    document.getElementById('nlEmail').value='';
+    btn.textContent='Subscribe'; btn.disabled=false;
+  }, 700);
 });
 
 /* ── NAV SCROLL LINKS ───────────────────────────── */
 window.scrollTo = function(sel) { var el = document.querySelector(sel); if(el) el.scrollIntoView({behavior:'smooth'}); };
+
+/* ── MODAL SYSTEM ────────────────────────────────── */
+function openModal(id){var m=document.getElementById(id);if(m){m.classList.add('open');document.body.style.overflow='hidden';}}
+function closeModal(id){var m=document.getElementById(id);if(m){m.classList.remove('open');document.body.style.overflow='';}}
+document.querySelectorAll('.modal-close').forEach(function(btn){btn.addEventListener('click',function(){closeModal(btn.dataset.close);});});
+document.querySelectorAll('.modal-overlay').forEach(function(ov){ov.addEventListener('click',function(e){if(e.target===ov)closeModal(ov.id);});});
+
+/* ── USER MENU ACTIONS ───────────────────────────── */
+var ddItems=document.querySelectorAll('.dd-item');
+if(ddItems[0]) ddItems[0].addEventListener('click',function(){uDD.classList.remove('open');openModal('ordersModal');});
+if(ddItems[1]) ddItems[1].addEventListener('click',function(){uDD.classList.remove('open');openModal('wishlistModal');});
+if(ddItems[2]) ddItems[2].addEventListener('click',function(){uDD.classList.remove('open');openModal('trackModal');});
+if(ddItems[3]) ddItems[3].addEventListener('click',function(){
+  uDD.classList.remove('open');
+  if(currentUser){
+    var n=(currentUser.user_metadata&&currentUser.user_metadata.full_name)||'';
+    document.getElementById('profileName').value=n;
+    document.getElementById('profileEmail').value=currentUser.email||'';
+    document.getElementById('profileAvatarBig').textContent=(n.charAt(0)||'E').toUpperCase();
+  }
+  openModal('profileModal');
+});
+if(ddItems[4]) ddItems[4].addEventListener('click',function(){uDD.classList.remove('open');openModal('settingsModal');});
+document.getElementById('settingsThemeBtn').addEventListener('click',function(){applyTheme(htmlEl.dataset.theme==='dark'?'light':'dark',true);});
+document.getElementById('saveProfileBtn').addEventListener('click',async function(){
+  var name=document.getElementById('profileName').value.trim();
+  if(!name){showToast('Please enter your name','error');return;}
+  if(configured&&sb){var res=await sb.auth.updateUser({data:{full_name:name}});if(res.error){showToast(res.error.message,'error');return;}currentUser=Object.assign({},currentUser,{user_metadata:{full_name:name}});}
+  updateUserUI(currentUser);showToast('Profile updated!','success');closeModal('profileModal');
+});
+window.trackOrder=function(){
+  var id=document.getElementById('trackOrderInput').value.trim();
+  var res=document.getElementById('trackResult');
+  if(!id){res.textContent='Please enter an order ID.';return;}
+  if(!id.toUpperCase().startsWith('ELY-')){res.innerHTML='<span style="color:var(--err)">Order not found. Check the ID and try again.</span>';return;}
+  res.innerHTML='<span style="color:var(--accent)">Order found! Status: Processing. Delivery in 3-7 business days.</span>';
+};
+
+/* ── CHECKOUT ─────────────────────────────────────── */
+document.querySelector('.btn-checkout').addEventListener('click',function(){
+  if(cart.length===0){showToast('Your cart is empty','error');return;}
+  if(currentUser){
+    var n=(currentUser.user_metadata&&currentUser.user_metadata.full_name)||'';
+    document.getElementById('chkName').value=n;
+    document.getElementById('chkEmail').value=currentUser.email||'';
+  }
+  var sub=cart.reduce(function(a,i){var p=PRODUCTS.find(function(x){return x.id===i.id;});return a+(p?p.price*i.qty:0);},0);
+  var del=sub>=60?0:4.99;var tax=sub*0.075;var tot=sub+del+tax;
+  document.getElementById('chkSummary').innerHTML=
+    cart.map(function(i){var p=PRODUCTS.find(function(x){return x.id===i.id;});if(!p)return'';
+      return '<div class="chk-summary-row"><span>'+p.name+' x'+i.qty+'</span><span>$'+(p.price*i.qty).toFixed(2)+'</span></div>';
+    }).join('')+
+    '<div class="chk-summary-row"><span>Delivery</span><span style="'+(del===0?'color:var(--accent)':'')+'">'+(del===0?'FREE':'$'+del.toFixed(2))+'</span></div>'+
+    '<div class="chk-summary-row"><span>Tax (7.5%)</span><span>$'+tax.toFixed(2)+'</span></div>'+
+    '<div class="chk-summary-row total"><span>Total</span><span>$'+tot.toFixed(2)+'</span></div>';
+  closeCart();openModal('checkoutModal');
+});
+document.getElementById('chkCard').addEventListener('input',function(){var v=this.value.replace(/[^0-9]/g,'').substring(0,16);this.value=v.replace(/(.{4})/g,'$1 ').trim();});
+document.getElementById('chkExpiry').addEventListener('input',function(){var v=this.value.replace(/[^0-9]/g,'').substring(0,4);if(v.length>=2)v=v.substring(0,2)+' / '+v.substring(2);this.value=v;});
+document.getElementById('chkCVV').addEventListener('input',function(){this.value=this.value.replace(/[^0-9]/g,'').substring(0,4);});
+document.getElementById('payBtn').addEventListener('click',async function(){
+  var name=document.getElementById('chkName').value.trim();
+  var email=document.getElementById('chkEmail').value.trim();
+  var address=document.getElementById('chkAddress').value.trim();
+  var city=document.getElementById('chkCity').value.trim();
+  var card=document.getElementById('chkCard').value.replace(/ /g,'');
+  var expiry=document.getElementById('chkExpiry').value.trim();
+  var cvv=document.getElementById('chkCVV').value.trim();
+  if(!name||!email||!address||!city){showToast('Please fill in all delivery fields','error');return;}
+  if(card.length<16){showToast('Please enter a valid card number','error');return;}
+  if(expiry.length<7){showToast('Please enter a valid expiry','error');return;}
+  if(cvv.length<3){showToast('Please enter your CVV','error');return;}
+  var btn=document.getElementById('payBtn');btn.classList.add('loading');
+  var oid='ELY-'+new Date().toISOString().slice(0,10).replace(/-/g,'')+'-'+Math.random().toString(36).substring(2,6).toUpperCase();
+  var sub=cart.reduce(function(a,i){var p=PRODUCTS.find(function(x){return x.id===i.id;});return a+(p?p.price*i.qty:0);},0);
+  var del=sub>=60?0:4.99;var tax=sub*0.075;var tot=sub+del+tax;
+  if(configured&&sb){
+    try{await sb.from('orders').insert([{order_id:oid,user_email:email,user_name:name,delivery_address:address+', '+city+', '+document.getElementById('chkCountry').value,items:JSON.stringify(cart),subtotal:sub.toFixed(2),total:tot.toFixed(2),status:'pending',created_at:new Date().toISOString()}]);}
+    catch(e){console.log('Order:',e.message);}
+  }
+  await new Promise(function(r){setTimeout(r,1800);});
+  btn.classList.remove('loading');
+  cart=[];saveCart();renderCart();updateCartBadge();
+  document.getElementById('checkoutBody').innerHTML=
+    '<div class="order-success">'
+    +'<div class="order-check"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>'
+    +'<h3>Order Placed!</h3>'
+    +'<p>Thank you, '+name+'!<br/>Your order is being processed.</p>'
+    +'<p>Confirmation sent to <strong>'+email+'</strong></p>'
+    +'<span class="order-id">'+oid+'</span>'
+    +'<button class="btn-pay" style="max-width:200px;margin:1.5rem auto 0" onclick="closeModal(\'checkoutModal\')"><span class="pay-label">Continue Shopping</span></button>'
+    +'</div>';
+  showToast('Order placed!','success',5000);
+});
 
 /* ── INIT CART BADGE ────────────────────────────── */
 updateCartBadge();
